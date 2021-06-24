@@ -29,6 +29,9 @@ const canvasArea = {
 
 }
 
+
+
+
 function displayNone (element){
   let displayNone = document.querySelector(element).style.display = "none"
   
@@ -48,7 +51,7 @@ function unHideButton(){
     canvasArea.canvas.width = 650,
     canvasArea.canvas.height = 430,
     canvasArea.ctx = canvasArea.canvas.getContext('2d')
-    document.body.insertBefore(canvasArea.canvas, document.body.childNodes[0]);
+    document.querySelector('.container').appendChild(canvasArea.canvas)
     
     hiddenButton()
     countDown()
@@ -72,6 +75,7 @@ function unHideButton(){
     iconDinoFanho.draw();
     showTime()
     checkGameOver()
+    checkFinishGame()
     
     
 
@@ -204,7 +208,7 @@ function unHideButton(){
     cancelAnimationFrame(animationId);
     clearInterval(intervalId)
   }
-
+  // FUNCTION CHECKGAMEOVER
   function checkGameOver() {
     if (!collision() && timeLeft > 0) {
       animationId = requestAnimationFrame(updateCanvas);
@@ -214,6 +218,19 @@ function unHideButton(){
       stopGame();
       resetGame()
     }
+  }
+  
+
+  function checkFinishGame(){
+    if(car.right() >= canvasArea.canvas.width){
+      console.log(timeLeft)
+      stopGame()
+      canvasArea.ctx.fillStyle = 'gray'
+      canvasArea.ctx.font = '25px Orbitron'
+      canvasArea.ctx.textAlign = 'center'
+      canvasArea.ctx.fillText(`Congratlations, you score is ${timeLeft}`,300,60)
+    }
+    return false
   }
 
   // SCREENS THE GAME
@@ -246,7 +263,6 @@ function unHideButton(){
   // TIME ON THE SCREEN
   let timeLeft = 70
   function showTime(){
-    console.log(timeLeft)
     canvasArea.ctx.fillStyle = 'gray'
     canvasArea.ctx.font = '25px Orbitron'
     canvasArea.ctx.fillText(timeLeft,300,30)
