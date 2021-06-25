@@ -1,3 +1,4 @@
+// I need to write victory score. Use dom for it.
 window.onload = () => {
   document.getElementById("start-button").onclick = () => {
     
@@ -52,7 +53,7 @@ function unHideButton(){
     canvasArea.canvas.height = 430,
     canvasArea.ctx = canvasArea.canvas.getContext('2d')
     document.querySelector('.container').appendChild(canvasArea.canvas)
-    
+    marioKartTheme.play()
     hiddenButton()
     countDown()
     updateCanvas();
@@ -207,6 +208,8 @@ function unHideButton(){
   function stopGame() {
     cancelAnimationFrame(animationId);
     clearInterval(intervalId)
+    marioKartTheme.pause()
+    marioKartTheme.currentTime = 0
   }
   // FUNCTION CHECKGAMEOVER
   function checkGameOver() {
@@ -215,6 +218,7 @@ function unHideButton(){
     } else {
       unHideButton()
       newScreen.gameOver();
+      gameOverAudio.play()
       stopGame();
       resetGame()
     }
@@ -225,12 +229,22 @@ function unHideButton(){
     if(car.right() >= canvasArea.canvas.width){
       console.log(timeLeft)
       stopGame()
-      canvasArea.ctx.fillStyle = 'gray'
+      newScreen.winScren()
+      writeScores()
+      // canvasArea.ctx.fillStyle = 'white'
+      // canvasArea.ctx.font = '25px Orbitron'
+      // canvasArea.ctx.textAlign = 'center'
+      // canvasArea.ctx.fillText(`Congratlations, you score is ${timeLeft}`,300,60)
+    }
+    // return false
+  }
+  function writeScores(){
+      canvasArea.ctx.fillStyle = 'white'
       canvasArea.ctx.font = '25px Orbitron'
       canvasArea.ctx.textAlign = 'center'
-      canvasArea.ctx.fillText(`Congratlations, you score is ${timeLeft}`,300,60)
-    }
-    return false
+      canvasArea.ctx.fillText(`congrats, you score is ${timeLeft}`,0,0)
+      unHideButton()
+      resetGame()
   }
 
   // SCREENS THE GAME
@@ -245,6 +259,16 @@ function unHideButton(){
       const img = new Image();
       img.src = "/images/finalGameOverScreen.PNG";
       img.onload = () => canvasArea.ctx.drawImage(img, 0, 0, canvasArea.canvas.width, canvasArea.canvas.height);
+      
+    }
+
+    winScren() {
+     const img = new Image()
+     img.src = '/images/winScreen.jpg'
+     img.onload = () => canvasArea.ctx.drawImage(img, 0, 0, canvasArea.canvas.width, canvasArea.canvas.height);
+     youWinAudio.play()
+     // need write win score 
+     
     }
   }
 
@@ -260,8 +284,16 @@ function unHideButton(){
   }
   const newSound = new Sounds();
 
+  const marioKartTheme = new Audio('/sounds/marioKartTheme.mp3')
+  const gameOverAudio = new Audio('/sounds/atariGameOverBoom.wav')
+  const youWinAudio = new Audio('/sounds/youWin.mp3')
+  // FUNCTION AUDIO PLAY STOP
+  
+
+
+
   // TIME ON THE SCREEN
-  let timeLeft = 70
+  let timeLeft = 20
   function showTime(){
     canvasArea.ctx.fillStyle = 'gray'
     canvasArea.ctx.font = '25px Orbitron'
