@@ -222,7 +222,7 @@ window.onload = () => {
   function resetGame() {
     car.posX = 50;
     car.posY = 330;
-    timeLeft = 30;
+    timeLeft = 35;
   }
 
   // FUNCTION STOPGAME
@@ -317,7 +317,7 @@ window.onload = () => {
   const youWinAudio = new Audio("/sounds/youWin.mp3");
 
   // TIME ON THE SCREEN
-  let timeLeft = 2;
+  let timeLeft = 35;
   function showTime() {
     canvasArea.ctx.fillStyle = "gray";
     canvasArea.ctx.font = "25px Games";
