@@ -1,7 +1,6 @@
 // I need to write victory score. Use dom for it.
 window.onload = () => {
   document.getElementById("start-button").onclick = () => {
-    
     startGame();
   };
 
@@ -25,37 +24,34 @@ window.onload = () => {
         break;
     }
   });
-const canvasArea = {
-  canvas: document.createElement('canvas')
+  const canvasArea = {
+    canvas: document.createElement("canvas"),
+  };
 
-}
+  function displayNone(element) {
+    let displayNone = (document.querySelector(element).style.display = "none");
+  }
+  function hiddenButton() {
+    // let element = document.querySelector('.container')
+    let button = (document.getElementById("start-button").style.visibility =
+      "hidden");
+    // element.removeChild(button)
+  }
 
-
-
-
-function displayNone (element){
-  let displayNone = document.querySelector(element).style.display = "none"
-  
-}
-function hiddenButton(){
-  // let element = document.querySelector('.container')
-  let button = document.getElementById('start-button').style.visibility = 'hidden'
-  // element.removeChild(button)
-}
-
-function unHideButton(){
-  let button = document.getElementById('start-button').style.visibility = 'visible'
-}
+  function unHideButton() {
+    let button = (document.getElementById("start-button").style.visibility =
+      "visible");
+  }
 
   function startGame() {
-    displayNone('.startScreen')
-    canvasArea.canvas.width = 650,
-    canvasArea.canvas.height = 430,
-    canvasArea.ctx = canvasArea.canvas.getContext('2d')
-    document.querySelector('.container').appendChild(canvasArea.canvas)
-    marioKartTheme.play()
-    hiddenButton()
-    countDown()
+    displayNone(".startScreen");
+    (canvasArea.canvas.width = 650),
+      (canvasArea.canvas.height = 430),
+      (canvasArea.ctx = canvasArea.canvas.getContext("2d"));
+    document.querySelector(".container").appendChild(canvasArea.canvas);
+    marioKartTheme.play();
+    hiddenButton();
+    countDown();
     updateCanvas();
   }
 
@@ -68,26 +64,30 @@ function unHideButton(){
     clearCanvas();
     background.draw();
     car.draw();
-    iconTurtle.controlIcons();
+    icons[0].controlIcons();
     iconTurtle.draw();
     iconOldMan.controlIcons();
     iconOldMan.draw();
     iconDinoFanho.controlIcons();
     iconDinoFanho.draw();
-    showTime()
-    checkGameOver()
-    checkFinishGame()
-    
-    
-
-    
+    iconRedShell.controlIcons();
+    iconRedShell.draw();
+    checkGameOver();
+    showTime();
+    checkFinishGame();
   }
 
+  // FUNCTION CLEAR CANVAS
   function clearCanvas() {
-    canvasArea.ctx.clearRect(0, 0, canvasArea.canvas.width, canvasArea.canvas.height);
+    canvasArea.ctx.clearRect(
+      0,
+      0,
+      canvasArea.canvas.width,
+      canvasArea.canvas.height
+    );
   }
 
-  // BACKGROUND
+  // BACKGROUND AND METHODS
   class Background {
     constructor(source) {
       this.posX = 0;
@@ -99,13 +99,19 @@ function unHideButton(){
       };
     }
     draw() {
-      canvasArea.ctx.drawImage(this.img, this.posX, this.posY, canvasArea.canvas.width, 485);
+      canvasArea.ctx.drawImage(
+        this.img,
+        this.posX,
+        this.posY,
+        canvasArea.canvas.width,
+        485
+      );
     }
   }
- 
+
   const background = new Background("/images/background2.PNG");
 
-  // ICONS
+  // ICONS AND METHODS
   class Icons {
     constructor(source, posX, posY, w, h, speed) {
       this.width = w;
@@ -122,7 +128,13 @@ function unHideButton(){
       };
     }
     draw() {
-      canvasArea.ctx.drawImage(this.image, this.posX, this.posY, this.width, this.height);
+      canvasArea.ctx.drawImage(
+        this.image,
+        this.posX,
+        this.posY,
+        this.width,
+        this.height
+      );
     }
 
     top() {
@@ -182,93 +194,105 @@ function unHideButton(){
     }
   }
 
-  const car = new Icons("/images/car.png", 50, 330, 40, 37, 10);
-  const iconTurtle = new Icons("/images/turtle2.png", 200, 250, 30, 20, 0.8);
-  const iconOldMan = new Icons("/images/old-man2.png", 320, 230, 35, 35, 1);
+  // INSTANCE OF ICONS
+  const car = new Icons("/images/marioKart.png", 50, 330, 32, 30, 10);
+  const iconTurtle = new Icons(
+    "/images/RedShellMK8.png",
+    200,
+    250,
+    25,
+    20,
+    0.8
+  );
+  const iconOldMan = new Icons("/images/old-man2.png", 320, 230, 35, 30, 1);
   const iconDinoFanho = new Icons("/images/dinoFanho.png", 436, 230, 35, 35, 2);
-  const icons = [iconTurtle, iconOldMan, iconDinoFanho];
-
-  // FUNCTION COLLISION 
+  const iconRedShell = new Icons("/images/turtle2.png", 559, 230, 25, 20, 2.2);
+  const icons = [iconTurtle, iconOldMan, iconDinoFanho, iconRedShell];
+  
+  // FUNCTION COLLISION
   function collision() {
     for (let icon of icons) {
       if (car.checkCollision(icon)) {
-        newSound.crashSound();
+        setTimeout(newSound.crashSound, 1000);
         return true;
       }
     }
   }
-  function resetGame(){
+  // FUNCTION RESET GAME
+  function resetGame() {
     car.posX = 50;
     car.posY = 330;
-    timeLeft = 60
-    
+    timeLeft = 30;
   }
 
-  // FUNCTION STOPGAME 
+  // FUNCTION STOPGAME
   function stopGame() {
     cancelAnimationFrame(animationId);
-    clearInterval(intervalId)
-    marioKartTheme.pause()
-    marioKartTheme.currentTime = 0
+    clearInterval(intervalId);
+    marioKartTheme.pause();
+    marioKartTheme.currentTime = 0;
   }
   // FUNCTION CHECKGAMEOVER
   function checkGameOver() {
     if (!collision() && timeLeft > 0) {
       animationId = requestAnimationFrame(updateCanvas);
     } else {
-      unHideButton()
+      unHideButton();
       newScreen.gameOver();
-      gameOverAudio.play()
+      gameOverAudio.play();
       stopGame();
-      resetGame()
+      resetGame();
+      
     }
   }
-  
 
-  function checkFinishGame(){
-    if(car.right() >= canvasArea.canvas.width){
-      console.log(timeLeft)
-      stopGame()
-      newScreen.winScren()
-      writeScores()
-      // canvasArea.ctx.fillStyle = 'white'
-      // canvasArea.ctx.font = '25px Orbitron'
-      // canvasArea.ctx.textAlign = 'center'
-      // canvasArea.ctx.fillText(`Congratlations, you score is ${timeLeft}`,300,60)
+  // FUNCTION CHECK GAME FINISH
+  function checkFinishGame() {
+    if (car.right() >= canvasArea.canvas.width) {
+      console.log(timeLeft);
+      stopGame();
+      newScreen.winScren();
+      unHideButton();
+      setTimeout(resetGame, 1000);
     }
-    // return false
-  }
-  function writeScores(){
-      canvasArea.ctx.fillStyle = 'white'
-      canvasArea.ctx.font = '25px Orbitron'
-      canvasArea.ctx.textAlign = 'center'
-      canvasArea.ctx.fillText(`congrats, you score is ${timeLeft}`,0,0)
-      unHideButton()
-      resetGame()
   }
 
   // SCREENS THE GAME
   class Screens {
-    // startScreen() {
-    //   const img = new Image();
-    //   img.src = "/images/startScreen.PNG";
-    //   img.onload = () => ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-    // }
-
     gameOver() {
       const img = new Image();
       img.src = "/images/finalGameOverScreen.PNG";
-      img.onload = () => canvasArea.ctx.drawImage(img, 0, 0, canvasArea.canvas.width, canvasArea.canvas.height);
-      
+      img.onload = () =>
+        canvasArea.ctx.drawImage(
+          img,
+          0,
+          0,
+          canvasArea.canvas.width,
+          canvasArea.canvas.height
+        );
     }
 
     winScren() {
-     const img = new Image()
-     img.src = '/images/winScreen.jpg'
-     img.onload = () => canvasArea.ctx.drawImage(img, 0, 0, canvasArea.canvas.width, canvasArea.canvas.height);
-     youWinAudio.play()
-     // need write win score 
-     
+      youWinAudio.play();
+      const img = new Image();
+      img.src = "/images/winScreen.jpg";
+      img.onload = function () {
+        canvasArea.ctx.drawImage(
+          img,
+          0,
+          0,
+          canvasArea.canvas.width,
+          canvasArea.canvas.height
+        );
+        canvasArea.ctx.fillStyle = "white";
+        canvasArea.ctx.font = "20px Games";
+        canvasArea.ctx.textAlign = "center";
+        canvasArea.ctx.fillText(
+          `CONGRATULATIONS, YOU SCORE IS ${timeLeft}`,
+          320,
+          80
+        );
+      };
     }
   }
 
@@ -283,30 +307,27 @@ function unHideButton(){
     }
   }
   const newSound = new Sounds();
-
-  const marioKartTheme = new Audio('/sounds/marioKartTheme.mp3')
-  const gameOverAudio = new Audio('/sounds/atariGameOverBoom.wav')
-  const youWinAudio = new Audio('/sounds/youWin.mp3')
-  // FUNCTION AUDIO PLAY STOP
   
 
-
+  // SOUNDS OUTSIDE THE INSTANCES
+  const marioKartTheme = new Audio("/sounds/marioKartTheme.mp3");
+  marioKartTheme.volume = 0.3
+  const gameOverAudio = new Audio("/sounds/atariGameOverBoom.wav");
+  gameOverAudio.volume = 0.3
+  const youWinAudio = new Audio("/sounds/youWin.mp3");
 
   // TIME ON THE SCREEN
-  let timeLeft = 20
-  function showTime(){
-    canvasArea.ctx.fillStyle = 'gray'
-    canvasArea.ctx.font = '25px Orbitron'
-    canvasArea.ctx.fillText(timeLeft,300,30)
-      
+  let timeLeft = 2;
+  function showTime() {
+    canvasArea.ctx.fillStyle = "gray";
+    canvasArea.ctx.font = "25px Games";
+    canvasArea.ctx.fillText(timeLeft, 300, 30);
   }
 
-  let intervalId = null
-  function countDown(){
-    intervalId = setInterval(function (){
-      timeLeft -= 1
-    }, 1000)}
-
-
-
+  let intervalId = null;
+  function countDown() {
+    intervalId = setInterval(function () {
+      timeLeft -= 1;
+    }, 1000);
+  }
 };

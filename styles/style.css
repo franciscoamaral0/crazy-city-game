@@ -1,15 +1,48 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap');
+@font-face {
+    font-family: 'atari';
+    src: url('/atari-classic-font/AtariClassic-gry3.ttf')
+}
+@font-face {
+    font-family: 'atari-text';
+    src: url('/atari-classic-font/AtariClassicExtrasmooth-LxZy.ttf');
+}
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    
 }
+
+.nav-bar {
+    background-color: #343A40;
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+
+.nav-bar h1{ 
+    text-align: center;
+    font-family: 'Games', sans-serif;
+    color:  #f8f8ff;
+    
+}
+.nav-bar div{
+    margin-bottom: 20px;
+}
+
+
+
+
 .container{
+    background-color: #343A40;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     position: relative;
+    margin: 0;
+    padding: 0;
     
 }
 #start-button { 
@@ -31,5 +64,40 @@
     
 }
 
+.about{
+ background-color: #5CE1E6;
+ color: #f8f8ff;
+}
 
+.aboutText{
+    padding: 40px 30px;
+}
+.about h2 {
+  font-family: atari;
+  margin-bottom: 25px;
+  
+}
+
+.about p {
+    font-family: atari-text;
+    font-size: 10px;
+}
+
+footer{
+    background-color:#343A40 ;
+}
+.socialMedia h4 {
+    color: #f8f8ff;
+    font-family: atari;
+}
+.socialMedia{
+    text-align: center;
+    padding: 30px 0;
+}
+.socialMedia img {
+    margin-top:  20px;
+    width: 15px;
+    height: 15px;
+    margin-right: 6px;
+}
 
