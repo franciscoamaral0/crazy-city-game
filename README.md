@@ -4,7 +4,7 @@
 
 
 
-![startScreen](/Users/utilizador/Desktop/firstProjectGame-CCGame/images/startScreen.PNG)
+![startScreen](/images/startScreen.PNG)
 
 ###### Developed by Francisco Amaral
 
