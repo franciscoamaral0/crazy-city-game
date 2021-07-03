@@ -110,7 +110,7 @@ window.onload = () => {
     }
   }
 
-  const background = new Background("/images/background2.PNG");
+  const background = new Background("images/background2.PNG");
 
   // ICONS AND METHODS
   class Icons {
@@ -196,7 +196,7 @@ window.onload = () => {
   }
 
   // INSTANCE OF ICONS
-  const car = new Icons("/images/marioKart.png", 50, 330, 32, 30, 10);
+  const car = new Icons("images/marioKart.png", 50, 330, 32, 30, 10);
   const iconTurtle = new Icons(
     "/images/RedShellMK8.png",
     200,
@@ -205,10 +205,10 @@ window.onload = () => {
     20,
     0.8
   );
-  const iconOldMan = new Icons("/images/old-man2.png", 320, 230, 35, 30, 1);
-  const iconDinoFanho = new Icons("/images/dinoFanho.png", 436, 230, 35, 35, 2);
-  const iconRedShell = new Icons("/images/turtle2.png", 559, 230, 25, 20, 2.2);
-  const timerIcon = new Icons("/images/timer.png", 270, 6, 26,26 )
+  const iconOldMan = new Icons("images/old-man2.png", 320, 230, 35, 30, 1);
+  const iconDinoFanho = new Icons("images/dinoFanho.png", 436, 230, 35, 35, 2);
+  const iconRedShell = new Icons("images/turtle2.png", 559, 230, 25, 20, 2.2);
+  const timerIcon = new Icons("images/timer.png", 270, 6, 26,26 )
   const icons = [iconTurtle, iconOldMan, iconDinoFanho, iconRedShell];
   
   // FUNCTION COLLISION
@@ -263,7 +263,7 @@ window.onload = () => {
   class Screens {
     gameOver() {
       const img = new Image();
-      img.src = "/images/finalGameOverScreen.PNG";
+      img.src = "images/finalGameOverScreen.PNG";
       img.onload = () =>
         canvasArea.ctx.drawImage(
           img,
@@ -277,7 +277,7 @@ window.onload = () => {
     winScren() {
       youWinAudio.play();
       const img = new Image();
-      img.src = "/images/winScreen.jpg";
+      img.src = "images/winScreen.jpg";
       img.onload = function () {
         canvasArea.ctx.drawImage(
           img,
@@ -304,7 +304,7 @@ window.onload = () => {
   class Sounds {
     crashSound() {
       const audio = new Audio();
-      audio.src = "/sounds/carCrash.mp3";
+      audio.src = "sounds/carCrash.mp3";
       audio.play();
     }
   }
@@ -312,11 +312,11 @@ window.onload = () => {
   
 
   // SOUNDS OUTSIDE THE INSTANCES
-  const marioKartTheme = new Audio("/sounds/marioKartTheme.mp3");
+  const marioKartTheme = new Audio("sounds/marioKartTheme.mp3");
   marioKartTheme.volume = 0.2
-  const gameOverAudio = new Audio("/sounds/atariGameOverBoom.wav");
+  const gameOverAudio = new Audio("sounds/atariGameOverBoom.wav");
   gameOverAudio.volume = 0.3
-  const youWinAudio = new Audio("/sounds/youWin.mp3");
+  const youWinAudio = new Audio("sounds/youWin.mp3");
 
   // TIME ON THE SCREEN
   let timeLeft = 35;
