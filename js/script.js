@@ -198,7 +198,7 @@ window.onload = () => {
   // INSTANCE OF ICONS
   const car = new Icons("images/marioKart.png", 50, 330, 32, 30, 10);
   const iconTurtle = new Icons(
-    "/images/RedShellMK8.png",
+    "images/RedShellMK8.png",
     200,
     250,
     25,
@@ -304,7 +304,7 @@ window.onload = () => {
   class Sounds {
     crashSound() {
       const audio = new Audio();
-      audio.src = "./sounds/carCrash.mp3";
+      audio.src = "sounds/carCrash.mp3";
       audio.play();
     }
   }
