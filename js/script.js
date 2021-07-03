@@ -110,7 +110,7 @@ window.onload = () => {
     }
   }
 
-  const background = new Background("images/background2.PNG");
+  const background = new Background("./images/background2.PNG");
 
   // ICONS AND METHODS
   class Icons {
