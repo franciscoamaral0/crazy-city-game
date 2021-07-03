@@ -241,7 +241,7 @@ window.onload = () => {
     } else {
       newScreen.gameOver();
       gameOverAudio.play();
-      setTimeout(unHideButton, 1800)
+      setTimeout(unHideButton, 2800)
       stopGame();
       resetGame();
       
