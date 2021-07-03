@@ -8,7 +8,7 @@
 
 ###### Developed by Francisco Amaral
 
-######   [![Foo](/iloveimg-resized/linkedin.png)](https://www.linkedin.com/in/francisco-amaral-3b2490163/) &emsp [![Foo](/iloveimg-resized/github.png)](https://github.com/franciscoamaral0) &emsp [![Foo](/Users/utilizador/Desktop/firstProjectGame-CCGame/iloveimg-resized/facebook.png)](https://www.facebook.com/franciscogurgel777) &emsp [![Foo](/iloveimg-resized/NicePng_oregon-outline-png_3563301.png)](https://www.instagram.com/franciscogurgel)   
+######   [![Foo](/iloveimg-resized/linkedin.png)](https://www.linkedin.com/in/francisco-amaral-3b2490163/) &emsp [![Foo](/iloveimg-resized/github.png)](https://github.com/franciscoamaral0) &emsp [![Foo](/iloveimg-resized/facebook.png)](https://www.facebook.com/franciscogurgel777) &emsp [![Foo](/iloveimg-resized/NicePng_oregon-outline-png_3563301.png)](https://www.instagram.com/franciscogurgel)   
 
 --------------------------------------------------------------------
 
