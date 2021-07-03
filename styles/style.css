@@ -14,6 +14,35 @@
     
 }
 
+
+
+header{
+    display: flex;
+    justify-content: center;
+    background-color: #5CE1E6;
+    
+    
+}
+
+header div{
+    padding: 30px 0;
+    /* margin-right: 60px; */
+    font-size: 20px;
+    font-family: atari;
+    
+}
+
+header div a{
+    text-decoration: none;
+    color: #f8f8ff ;
+}
+.repositoryLink{
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+
+
 .nav-bar {
     background-color: #343A40;
     padding-top: 10px;
@@ -25,6 +54,9 @@
     text-align: center;
     font-family: 'Games', sans-serif;
     color:  #f8f8ff;
+    font-size: 50px;
+    padding-left: 60px;
+    
     
 }
 .nav-bar div{
@@ -45,19 +77,29 @@
     padding: 0;
     
 }
+
+
+canvas{
+    padding-bottom: 50px;
+}
+
 #start-button { 
     /* border:  1px solid white; */
-    width: 188px;
-    height: 123px;
+    width: 259px;
+    height: 143px;
     top: 190px;
     position: absolute;
+    
 }
 
 .startScreen{
-    width: 500px;
-    height: 400px;
+    width: 700px;
+    height: 500px;
+    padding-bottom: 50px;
+    
 
 }
+
 
 .displayNone{
     display: none;
@@ -67,24 +109,27 @@
 .about{
  background-color: #5CE1E6;
  color: #f8f8ff;
+ padding-bottom: 40px;
 }
 
 .aboutText{
-    padding: 40px 30px;
+    padding: 40px 80px;
 }
 .about h2 {
   font-family: atari;
   margin-bottom: 25px;
+  font-size: 30px;
   
 }
 
 .about p {
     font-family: atari-text;
-    font-size: 10px;
+    font-size: 15px;
 }
 
 footer{
     background-color:#343A40 ;
+    
 }
 .socialMedia h4 {
     color: #f8f8ff;
@@ -92,12 +137,13 @@ footer{
 }
 .socialMedia{
     text-align: center;
-    padding: 30px 0;
+    padding: 60px 0;
+
 }
 .socialMedia img {
     margin-top:  20px;
-    width: 15px;
-    height: 15px;
-    margin-right: 6px;
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
 }
 

@@ -24,18 +24,19 @@ window.onload = () => {
         break;
     }
   });
+  // CREATE CANVAS
   const canvasArea = {
     canvas: document.createElement("canvas"),
+    
   };
 
   function displayNone(element) {
     let displayNone = (document.querySelector(element).style.display = "none");
   }
+
   function hiddenButton() {
-    // let element = document.querySelector('.container')
     let button = (document.getElementById("start-button").style.visibility =
       "hidden");
-    // element.removeChild(button)
   }
 
   function unHideButton() {
@@ -43,11 +44,12 @@ window.onload = () => {
       "visible");
   }
 
+  // START GAME FUNCTION
   function startGame() {
     displayNone(".startScreen");
     (canvasArea.canvas.width = 650),
-      (canvasArea.canvas.height = 430),
-      (canvasArea.ctx = canvasArea.canvas.getContext("2d"));
+    (canvasArea.canvas.height = 430),
+    (canvasArea.ctx = canvasArea.canvas.getContext("2d"));
     document.querySelector(".container").appendChild(canvasArea.canvas);
     marioKartTheme.play();
     hiddenButton();
@@ -55,8 +57,6 @@ window.onload = () => {
     updateCanvas();
   }
 
-  // const canvas = document.getElementById("canvas");
-  // const ctx = canvas.getContext("2d");
 
   let animationId = null;
 
@@ -72,6 +72,7 @@ window.onload = () => {
     iconDinoFanho.draw();
     iconRedShell.controlIcons();
     iconRedShell.draw();
+    timerIcon.draw()
     checkGameOver();
     showTime();
     checkFinishGame();
@@ -207,6 +208,7 @@ window.onload = () => {
   const iconOldMan = new Icons("/images/old-man2.png", 320, 230, 35, 30, 1);
   const iconDinoFanho = new Icons("/images/dinoFanho.png", 436, 230, 35, 35, 2);
   const iconRedShell = new Icons("/images/turtle2.png", 559, 230, 25, 20, 2.2);
+  const timerIcon = new Icons("/images/timer.png", 270, 6, 26,26 )
   const icons = [iconTurtle, iconOldMan, iconDinoFanho, iconRedShell];
   
   // FUNCTION COLLISION
@@ -237,9 +239,9 @@ window.onload = () => {
     if (!collision() && timeLeft > 0) {
       animationId = requestAnimationFrame(updateCanvas);
     } else {
-      unHideButton();
       newScreen.gameOver();
       gameOverAudio.play();
+      setTimeout(unHideButton, 1800)
       stopGame();
       resetGame();
       
@@ -249,10 +251,10 @@ window.onload = () => {
   // FUNCTION CHECK GAME FINISH
   function checkFinishGame() {
     if (car.right() >= canvasArea.canvas.width) {
-      console.log(timeLeft);
+      
       stopGame();
       newScreen.winScren();
-      unHideButton();
+      setTimeout(unHideButton, 2000);
       setTimeout(resetGame, 1000);
     }
   }
@@ -311,7 +313,7 @@ window.onload = () => {
 
   // SOUNDS OUTSIDE THE INSTANCES
   const marioKartTheme = new Audio("/sounds/marioKartTheme.mp3");
-  marioKartTheme.volume = 0.3
+  marioKartTheme.volume = 0.2
   const gameOverAudio = new Audio("/sounds/atariGameOverBoom.wav");
   gameOverAudio.volume = 0.3
   const youWinAudio = new Audio("/sounds/youWin.mp3");
@@ -325,6 +327,8 @@ window.onload = () => {
   }
 
   let intervalId = null;
+
+  // COUNTDOWN FUNCTION
   function countDown() {
     intervalId = setInterval(function () {
       timeLeft -= 1;
